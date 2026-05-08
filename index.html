@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia Instagram — @lucaodasmilhas</title>
+  <style>
+    :root {
+      --azul:     #1a3c6e;
+      --azul-cl:  #2563eb;
+      --dourado:  #f59e0b;
+      --dourado-cl:#fde68a;
+      --bg:       #f8fafc;
+      --card:     #ffffff;
+      --texto:    #1e293b;
+      --muted:    #64748b;
+      --borda:    #e2e8f0;
+      --verde:    #10b981;
+      --roxo:     #7c3aed;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--azul) 0%, #0f2a52 60%, #1e1b4b 100%);
+      color: #fff;
+      padding: 64px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '✈';
+      position: absolute;
+      font-size: 320px;
+      opacity: .04;
+      top: -60px; right: -60px;
+      pointer-events: none;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: var(--dourado);
+      color: var(--azul);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--dourado); }
+    .hero p {
+      font-size: clamp(15px, 2vw, 18px);
+      opacity: .82;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .meta-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .meta-item strong { font-size: 28px; font-weight: 800; color: var(--dourado); }
+    .meta-item span { font-size: 12px; opacity: .7; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ── PROGRESSO ── */
+    .progress-bar-wrap {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      margin: -40px auto 48px;
+      max-width: 860px;
+      width: calc(100% - 48px);
+    }
+    .progress-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .progress-label strong { color: var(--texto); font-weight: 700; }
+    .bar-bg { background: var(--borda); border-radius: 999px; height: 14px; overflow: hidden; }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--azul-cl), var(--dourado));
+      width: 0%;
+      transition: width 1.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--azul);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--dourado);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ── CARDS ── */
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 22px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      border: 1px solid var(--borda);
+    }
+    .card-icon { font-size: 28px; margin-bottom: 12px; }
+    .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .card p, .card li { font-size: 14px; color: var(--muted); }
+    .card ul { padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+
+    .card.destaque {
+      border-left: 4px solid var(--dourado);
+      background: linear-gradient(135deg, #fffbeb 0%, #fff 100%);
+    }
+    .card.azul {
+      border-left: 4px solid var(--azul-cl);
+      background: linear-gradient(135deg, #eff6ff 0%, #fff 100%);
+    }
+    .card.verde {
+      border-left: 4px solid var(--verde);
+      background: linear-gradient(135deg, #ecfdf5 0%, #fff 100%);
+    }
+    .card.roxo {
+      border-left: 4px solid var(--roxo);
+      background: linear-gradient(135deg, #f5f3ff 0%, #fff 100%);
+    }
+
+    /* ── CHECKLIST ── */
+    .checklist { display: flex; flex-direction: column; gap: 10px; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--card);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid var(--borda);
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+    }
+    .check-item:hover { background: #f1f5f9; }
+    .check-item.done { background: #f0fdf4; border-color: #bbf7d0; }
+    .check-item.done .check-box { background: var(--verde); border-color: var(--verde); }
+    .check-item.done .check-box::after { content: '✓'; color: #fff; font-size: 11px; font-weight: 700; }
+    .check-item.done .check-text { text-decoration: line-through; color: var(--muted); }
+    .check-box {
+      width: 22px; height: 22px; min-width: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--borda);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+      transition: all .15s;
+    }
+    .check-text { font-size: 14px; }
+    .check-text strong { display: block; font-size: 14px; color: var(--texto); margin-bottom: 2px; }
+    .check-text span { font-size: 12px; color: var(--muted); }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item { display: flex; gap: 20px; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; min-width: 48px; }
+    .tl-dot {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .tl-line { width: 2px; flex: 1; background: var(--borda); margin: 4px 0; min-height: 32px; }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-body { padding-bottom: 28px; flex: 1; }
+    .tl-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .tl-body p { font-size: 13px; color: var(--muted); }
+    .tl-week {
+      font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── HASHTAGS ── */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--bg);
+      border: 1px solid var(--borda);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 13px;
+      color: var(--azul-cl);
+      font-weight: 500;
+    }
+    .tag.hot { background: var(--dourado-cl); border-color: var(--dourado); color: var(--azul); }
+
+    /* ── BIO MOCKUP ── */
+    .bio-box {
+      background: var(--card);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .bio-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--azul-cl), var(--dourado)); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+    .bio-info h3 { font-size: 16px; font-weight: 700; }
+    .bio-info span { font-size: 13px; color: var(--muted); }
+    .bio-text { font-size: 14px; line-height: 1.8; border-left: 3px solid var(--dourado); padding-left: 14px; color: var(--texto); }
+    .bio-text .linha { display: block; }
+    .bio-link { font-size: 13px; color: var(--azul-cl); margin-top: 10px; display: block; text-decoration: none; }
+
+    /* ── ALERTA ── */
+    .alerta {
+      background: #fef3c7;
+      border: 1px solid var(--dourado);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .alerta .icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── SECTION SPACING ── */
+    section { margin-bottom: 48px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--borda);
+    }
+    footer a { color: var(--azul-cl); text-decoration: none; }
+
+    @media (max-width: 560px) {
+      .meta { gap: 20px; }
+      .card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="badge">Guia de Crescimento · Instagram</div>
+  <h1>@lucaodasmilhas<br><span>rumo a 1.000 seguidores</span></h1>
+  <p>Plano prático para crescer no nicho de milhas e pontos, ensinando quem ainda não domina o assunto.</p>
+  <div class="meta">
+    <div class="meta-item"><strong>1.000</strong><span>meta de seguidores</span></div>
+    <div class="meta-item"><strong>90</strong><span>dias de plano</span></div>
+    <div class="meta-item"><strong>7</strong><span>pilares de crescimento</span></div>
+  </div>
+</header>
+
+<!-- BARRA DE PROGRESSO -->
+<div class="progress-bar-wrap">
+  <div class="progress-label">
+    <span><strong id="pct">0%</strong> concluído</span>
+    <span id="done-count">0 / 20 ações feitas</span>
+  </div>
+  <div class="bar-bg"><div class="bar-fill" id="bar"></div></div>
+</div>
+
+<div class="container">
+
+  <!-- 1. PERFIL -->
+  <section>
+    <h2 class="section-title">👤 1. Otimização do Perfil</h2>
+    <p style="margin-bottom:20px;font-size:14px;color:var(--muted)">O perfil é a primeira impressão. Visitante novo decide em menos de 3 segundos se vai seguir.</p>
+
+    <div class="grid grid-2" style="margin-bottom:20px">
+      <div class="card destaque">
+        <div class="card-icon">📝</div>
+        <h3>Nome de usuário</h3>
+        <p>@lucaodasmilhas já é excelente — direto ao nicho. Não mude. Garanta que o <strong>Nome</strong> (campo editável) inclua uma keyword: <em>Lucas Bertolini | Milhas</em>.</p>
+      </div>
+      <div class="card azul">
+        <div class="card-icon">🖼️</div>
+        <h3>Foto de perfil</h3>
+        <p>Use foto pessoal com boa iluminação, fundo neutro ou azul céu. Rosto visível e sorrindo gera mais confiança. Evite logo por enquanto — pessoas seguem pessoas.</p>
+      </div>
+    </div>
+
+    <!-- BIO MOCKUP -->
+    <div class="bio-box" style="margin-bottom:16px">
+      <div class="bio-header">
+        <div class="avatar">✈️</div>
+        <div class="bio-info">
+          <h3>Lucas Bertolini | Milhas</h3>
+          <span>@lucaodasmilhas · Exemplo de bio otimizada</span>
+        </div>
+      </div>
+      <div class="bio-text">
+        <span class="linha">🎯 Te ensino a voar de graça usando milhas</span>
+        <span class="linha">✈️ Do zero ao primeiro resgate em 30 dias</span>
+        <span class="linha">📲 Conteúdo pra quem nunca ouviu falar de pontos</span>
+        <span class="linha">👇 Começa por aqui ↓</span>
+      </div>
+      <a class="bio-link" href="#">linktr.ee/lucaodasmilhas</a>
+    </div>
+
+    <div class="alerta">
+      <span class="icon">💡</span>
+      <div>
+        <strong>Por que essa bio funciona?</strong> Ela responde em 3 linhas: o que você faz, para quem é, e qual o benefício imediato. A última linha direciona para o link — essencial para conversão.
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ESTRATÉGIA DE CONTEÚDO -->
+  <section>
+    <h2 class="section-title">📋 2. Estratégia de Conteúdo</h2>
+    <div class="grid grid-3" style="margin-bottom:20px">
+      <div class="card verde">
+        <div class="card-icon">🎬</div>
+        <h3>Reels (prioridade #1)</h3>
+        <p>O algoritmo empurra Reels para não-seguidores. Publique <strong>3–4 por semana</strong>. Foque nos 3 primeiros segundos para prender a atenção.</p>
+      </div>
+      <div class="card azul">
+        <div class="card-icon">📸</div>
+        <h3>Carrossel (prioridade #2)</h3>
+        <p>Alta taxa de salvamento = alcance orgânico. Publique <strong>2× por semana</strong>. Ideal para tutoriais passo a passo sobre milhas.</p>
+      </div>
+      <div class="card roxo">
+        <div class="card-icon">📖</div>
+        <h3>Stories (diariamente)</h3>
+        <p>Mantém engajamento dos atuais seguidores. Use enquetes, caixas de perguntas e contagem regressiva para criar hábito de visualização.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Ideias de conteúdo para o nicho</h3>
+        <ul>
+          <li>"O que são milhas e como funcionam" (vídeo básico)</li>
+          <li>"5 cartões que acumulam milhas rápido"</li>
+          <li>"Erro que todo iniciante comete com pontos"</li>
+          <li>"Quanto gastei vs. quanto economizei com milhas"</li>
+          <li>"Passo a passo: como emitir sua primeira passagem"</li>
+          <li>"Melhores programas: Livelo, Smiles, Latam Pass"</li>
+          <li>"Milhas vencem? Aprenda a não perder seus pontos"</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <h3>Fórmulas de hooks que convertem</h3>
+        <ul>
+          <li>"Você provavelmente está perdendo milhas todo mês"</li>
+          <li>"Fiz uma viagem de R$0 — veja como"</li>
+          <li>"3 coisas que ninguém te conta sobre pontos"</li>
+          <li>"Por que seu cartão de crédito não acumula nada?"</li>
+          <li>"Como fui de 0 a 50.000 milhas em 6 meses"</li>
+          <li>"O segredo que as cias aéreas não querem que você saiba"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CALENDÁRIO -->
+  <section>
+    <h2 class="section-title">📅 3. Calendário Semanal</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
+          <thead>
+            <tr style="background:var(--bg)">
+              <th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--borda)">Dia</th>
+              <th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--borda)">Formato</th>
+              <th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--borda)">Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Segunda</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Reels</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Educativo rápido</td></tr>
+            <tr><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Terça</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Stories</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Enquete / dica do dia</td></tr>
+            <tr><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Quarta</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Carrossel</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Tutorial passo a passo</td></tr>
+            <tr><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Quinta</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Reels</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Prova social / caso real</td></tr>
+            <tr><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Sexta</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Carrossel</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Comparativo (cartões/programas)</td></tr>
+            <tr><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Sábado</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Reels</td><td style="padding:8px 10px;border-bottom:1px solid var(--borda)">Bastidores / pessoal</td></tr>
+            <tr><td style="padding:8px 10px">Domingo</td><td style="padding:8px 10px">Stories</td><td style="padding:8px 10px">Planejamento da semana</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card destaque">
+        <div class="card-icon">⏰</div>
+        <h3>Melhores horários para postar</h3>
+        <ul>
+          <li><strong>Reels:</strong> Terça a Quinta, 19h–21h</li>
+          <li><strong>Carrossel:</strong> Segunda ou Quarta, 12h–13h</li>
+          <li><strong>Stories:</strong> Qualquer dia, 7h–9h e 20h–22h</li>
+        </ul>
+        <p style="margin-top:12px;font-size:13px">Após 30 dias, confira o Instagram Insights e ajuste para os horários do seu próprio público.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HASHTAGS -->
+  <section>
+    <h2 class="section-title"># 4. Estratégia de Hashtags</h2>
+    <p style="margin-bottom:16px;font-size:14px;color:var(--muted)">Use 5–10 hashtags por post. Misture tamanhos: grandes trazem alcance, médias trazem público certo, pequenas têm menos concorrência.</p>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3 style="margin-bottom:12px;font-size:14px;color:var(--muted)">🔥 Principais (acima de 500k posts)</h3>
+      <div class="tag-cloud">
+        <span class="tag hot">#milhas</span>
+        <span class="tag hot">#viagensbaratas</span>
+        <span class="tag hot">#milhasebeneficios</span>
+        <span class="tag hot">#pontosdecartao</span>
+        <span class="tag hot">#viajarmais</span>
+        <span class="tag hot">#dicasdeviagem</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3 style="margin-bottom:12px;font-size:14px;color:var(--muted)">🎯 Segmentadas (50k–500k posts)</h3>
+      <div class="tag-cloud">
+        <span class="tag">#acumularmilhas</span>
+        <span class="tag">#smiles</span>
+        <span class="tag">#livelo</span>
+        <span class="tag">#latampass</span>
+        <span class="tag">#cartaodecredito</span>
+        <span class="tag">#viajardegraca</span>
+        <span class="tag">#programasdefidelidade</span>
+        <span class="tag">#upgradedepassagem</span>
+        <span class="tag">#resgatermilhas</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:12px;font-size:14px;color:var(--muted)">💎 Nicho (menos de 50k — mais fácil de rankar)</h3>
+      <div class="tag-cloud">
+        <span class="tag">#dicasdemilhas</span>
+        <span class="tag">#iniciante em milhas</span>
+        <span class="tag">#milhasparainicinantes</span>
+        <span class="tag">#voarcompontos</span>
+        <span class="tag">#comoganharmonilhas</span>
+        <span class="tag">#lucaodasmilhas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ENGAJAMENTO -->
+  <section>
+    <h2 class="section-title">🤝 5. Táticas de Engajamento</h2>
+    <div class="grid grid-2">
+      <div class="card verde">
+        <div class="card-icon">💬</div>
+        <h3>Responda TODOS os comentários</h3>
+        <p>Nos primeiros 1.000 seguidores, cada comentário respondido sinaliza ao algoritmo que seu conteúdo gera conversa. Reserve 15 min/dia para isso.</p>
+      </div>
+      <div class="card azul">
+        <div class="card-icon">🔍</div>
+        <h3>Comente em perfis grandes do nicho</h3>
+        <p>Deixe comentários <strong>genuínos e informativos</strong> em perfis de milhas maiores. Isso expõe seu @ para a audiência deles gratuitamente.</p>
+      </div>
+      <div class="card destaque">
+        <div class="card-icon">📊</div>
+        <h3>Use caixas de perguntas nos Stories</h3>
+        <p>Pergunte: "Qual sua maior dúvida sobre milhas?" Isso gera conteúdo, mostra que você é acessível e aumenta o engajamento nos Stories.</p>
+      </div>
+      <div class="card roxo">
+        <div class="card-icon">🤝</div>
+        <h3>Colaborações (Collab posts)</h3>
+        <p>Procure perfis complementares (finanças, viagens, cartões) com 500–5.000 seguidores para fazer posts colaborativos. Crescimento mútuo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PLANO 90 DIAS -->
+  <section>
+    <h2 class="section-title">🗓️ 6. Plano 90 Dias</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot" style="background:#dbeafe;color:var(--azul-cl)">🚀</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-week">Semanas 1–2 · Fundação</div>
+          <h3>Otimizar perfil + primeiros 10 posts</h3>
+          <p>Bio reformulada, destaque de Stories criado, grade inicial com 9–12 posts de conteúdo evergreen sobre o básico de milhas. Meta: 100 seguidores.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot" style="background:#dcfce7;color:var(--verde)">📈</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-week">Semanas 3–6 · Consistência</div>
+          <h3>Ritmo de postagem + engajamento ativo</h3>
+          <p>Seguir calendário semanal, comentar em 5 perfis/dia, usar caixa de perguntas semanalmente, analisar os Reels com mais alcance e replicar o formato. Meta: 300 seguidores.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot" style="background:#fef3c7;color:#92400e">🔥</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-week">Semanas 7–10 · Aceleração</div>
+          <h3>Primeiro Reel viral + collab</h3>
+          <p>Identificar o melhor conteúdo e fazer versões aprimoradas. Fazer 1–2 colaborações com perfis do nicho. Criar série de conteúdo (ex: "30 dias de milhas"). Meta: 700 seguidores.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot" style="background:#f5f3ff;color:var(--roxo)">🎯</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-week">Semanas 11–13 · Conquista</div>
+          <h3>1.000 seguidores e próximos passos</h3>
+          <p>Manter cadência, aproveitar a tração dos conteúdos que performaram, planejar link in bio com lead magnet (ex: "Guia gratuito: suas primeiras milhas"). Meta: 1.000 seguidores. ✈️</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CHECKLIST DE AÇÕES -->
+  <section>
+    <h2 class="section-title">✅ 7. Checklist de Ações Imediatas</h2>
+    <p style="margin-bottom:16px;font-size:14px;color:var(--muted)">Clique para marcar como concluído.</p>
+    <div class="checklist" id="checklist">
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Atualizar nome de exibição com keyword</strong><span>Ex: "Lucas Bertolini | Milhas" para aparecer em buscas</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Reescrever a bio com os 4 elementos</strong><span>O que faz, para quem, benefício, call-to-action</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Criar conta no Linktree ou link único</strong><span>Centralizar links: WhatsApp, conteúdo extra, etc.</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Criar destaque de Stories "Começa aqui"</strong><span>Guia de introdução para novos seguidores</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Publicar 9 posts antes de crescer</strong><span>Grade cheia passa mais credibilidade para novos visitantes</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Criar Reel "O que são milhas" como primeiro viral</strong><span>Conteúdo básico tem maior potencial de alcance para não-seguidores</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Definir padrão visual (template)</strong><span>Cores e fontes consistentes criam identidade reconhecível</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Listar 5 perfis grandes do nicho para interagir</strong><span>Deixe comentários úteis — não apenas emojis</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Montar banco de ideias com 30 pautas</strong><span>Use o Notion, planilha ou bloco de notas — nunca fique sem o que postar</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Ativar as notificações do Instagram Insights</strong><span>Acompanhe alcance, impressões e crescimento semanalmente</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Fazer caixa de perguntas nos Stories esta semana</strong><span>"Qual sua maior dúvida sobre milhas?" — responda cada uma em vídeo</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Identificar 3 perfis para possível collab</strong><span>Finanças pessoais, viajantes, lifestyle — envie mensagem direta</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Gravar série "Milhas do Zero" (5 episódios)</strong><span>Série semanal cria expectativa e fideliza o público</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Compartilhar o perfil em grupos de viagem/finanças</strong><span>WhatsApp e Facebook têm comunidades ativos nesse nicho</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Criar capa padronizada para os destaques</strong><span>Ícones minimalistas no mesmo estilo passam profissionalismo</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Responder todos os comentários dos últimos 7 dias</strong><span>Retroativamente — o algoritmo continua monitorando</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Testar 3 formatos de legenda</strong><span>Curta (1–2 linhas), média (5–7 linhas) e longa (storytelling). Veja qual engaja mais.</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Configurar horário fixo de postagem</strong><span>Consistência de horário treina o algoritmo e o público</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Revisar os insights 1× por semana</strong><span>Todo domingo, analise quais posts tiveram mais alcance e salvamentos</span></div>
+      </div>
+      <div class="check-item" onclick="toggle(this)">
+        <div class="check-box"></div>
+        <div class="check-text"><strong>Celebrar cada 100 seguidores publicamente</strong><span>Agradecimento nos Stories cria vínculo e incentiva compartilhamento</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Guia criado para <a href="https://www.instagram.com/lucaodasmilhas" target="_blank">@lucaodasmilhas</a> · Hospedado no GitHub Pages
+</footer>
+
+<script>
+  const STORAGE_KEY = 'checklist-lucaodasmilhas';
+
+  function getState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; }
+  }
+  function saveState(arr) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+  }
+
+  function toggle(el) {
+    el.classList.toggle('done');
+    updateProgress();
+    const items = [...document.querySelectorAll('.check-item')];
+    saveState(items.map(i => i.classList.contains('done')));
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.check-item');
+    const done = document.querySelectorAll('.check-item.done').length;
+    const total = items.length;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('bar').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+    document.getElementById('done-count').textContent = done + ' / ' + total + ' ações feitas';
+  }
+
+  // Restaurar estado salvo
+  window.addEventListener('DOMContentLoaded', () => {
+    const state = getState();
+    const items = document.querySelectorAll('.check-item');
+    state.forEach((done, i) => { if (done && items[i]) items[i].classList.add('done'); });
+    updateProgress();
+    // Animar barra
+    setTimeout(() => updateProgress(), 100);
+  });
+</script>
+</body>
+</html>
